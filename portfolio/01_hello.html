@@ -69,17 +69,35 @@
 
     <div class="portfolio-item-individual">
         <h2>Project Overview</h2>
-        <p>Provide a brief description of the project, its purpose, and what you aimed to achieve.</p>
+        <p>
+            Hello Quad is the first assignment in CS250 Computer Graphics II at DigiPen Institute of Technology.
+            The goal of this project was to build a foundational OpenGL rendering pipeline from scratch by implementing
+            core GPU resource management classes and writing animated GLSL shaders.
+            The project targets OpenGL 3.3, OpenGL ES 3.0, and WebGL 2, running on both Windows and Web platforms.
+        </p>
 
         <h2>Tasks Completed</h2>
         <ul>
-            <li>Describe the tasks you completed for this project.</li>
-            <li>Be specific about your contributions and the technologies used.</li>
+            <li>Implemented <strong>VertexBuffer</strong> — GPU vertex buffer creation, data upload, and lifecycle management using OpenGL buffer objects.</li>
+            <li>Implemented <strong>IndexBuffer</strong> — Index buffer creation and binding for indexed draw calls.</li>
+            <li>Implemented <strong>VertexArray</strong> — VAO setup with vertex attribute pointer configuration, supporting multiple buffer layouts and instancing divisors.</li>
+            <li>Implemented <strong>Texture</strong> — 2D texture loading from image files and memory, with configurable filtering and wrapping modes.</li>
+            <li>Wrote a <strong>vertex shader</strong> that rotates the quad over time and moves it to follow the mouse cursor.</li>
+            <li>Wrote a <strong>fragment shader</strong> that smoothly cycles between vertex colors and texture colors using a time-based sin function.</li>
+            <li>Used <code>window::ElapsedTime</code> and <code>window::input::MouseWindowX/Y</code> environment variables to drive animations.</li>
+            <li>Built and deployed a WebGL 2 version using Emscripten.</li>
         </ul>
 
         <h2>Reflection</h2>
-        <p>Reflect on the project, discussing any challenges faced, solutions implemented, and what you learned from the
-            experience.</p>
+        <p>
+            The most challenging part was implementing the <strong>VertexArray</strong> class, specifically setting up
+            vertex attribute pointers with the correct stride and offset calculations across multiple attributes.
+            Understanding the difference between <code>glVertexAttribPointer</code> and <code>glVertexAttribIPointer</code>
+            and when to use each was an important lesson.
+            I also learned how the VAO stores the relationship between vertex buffers and attribute slots,
+            and why the index buffer must remain bound when the VAO is unbound.
+            Working with the asset reloader to hot-reload shaders at runtime was a great way to iterate quickly on the animations.
+        </p>
     </div>
 
     <div class="portfolio-item-individual">
