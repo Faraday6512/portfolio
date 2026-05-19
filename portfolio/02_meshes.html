@@ -71,17 +71,35 @@
 
     <div class="portfolio-item-individual">
         <h2>Project Overview</h2>
-        <p>Provide a brief description of the project, its purpose, and what you aimed to achieve.</p>
+        <p>
+            Procedural Geometric Modeling is the second assignment in CS250 Computer Graphics II at DigiPen Institute of Technology.
+            The goal of this project was to implement a mesh generation system that procedurally builds 3D geometry entirely in code —
+            without loading any external model files. Shapes such as planes, cubes, spheres, cylinders, and cones are constructed
+            by computing vertex positions, normals, UV coordinates, and index buffers from scratch.
+            The project targets OpenGL 3.3, OpenGL ES 3.0, and WebGL 2, running on both Windows and Web platforms.
+        </p>
 
         <h2>Tasks Completed</h2>
         <ul>
-            <li>Describe the tasks you completed for this project.</li>
-            <li>Be specific about your contributions and the technologies used.</li>
+            <li>Implemented a <strong>Mesh</strong> data structure to hold vertex attribute arrays (position, normal, UV, color) and an index list.</li>
+            <li>Procedurally generated a <strong>Plane</strong> mesh with configurable subdivisions, computing normals and UV coordinates per vertex.</li>
+            <li>Procedurally generated a <strong>Cube</strong> mesh with correct per-face normals and UV mapping for each of the six faces.</li>
+            <li>Procedurally generated a <strong>Sphere</strong> mesh using a UV-sphere algorithm with stacks and slices, including smooth per-vertex normals.</li>
+            <li>Procedurally generated a <strong>Cylinder</strong> and <strong>Cone</strong> mesh with capped ends and correctly interpolated side normals.</li>
+            <li>Uploaded all generated mesh data to the GPU using the <strong>VertexBuffer</strong>, <strong>IndexBuffer</strong>, and <strong>VertexArray</strong> classes from the previous assignment.</li>
+            <li>Rendered multiple mesh instances in a scene with different transforms using a simple Phong-style shader.</li>
+            <li>Built and deployed a WebGL 2 version using Emscripten.</li>
         </ul>
 
         <h2>Reflection</h2>
-        <p>Reflect on the project, discussing any challenges faced, solutions implemented, and what you learned from the
-            experience.</p>
+        <p>
+            The most challenging part was correctly computing <strong>smooth normals for the sphere</strong> —
+            making sure each vertex normal pointed outward along the unit sphere surface rather than approximating it from face normals.
+            Getting the index winding order consistent across all shapes so that back-face culling worked correctly also required careful attention.
+            I learned how the same vertex data layout built in the previous assignment composes cleanly with any procedurally generated geometry,
+            which reinforced why a well-designed buffer abstraction matters.
+            Seeing complex shapes appear from pure math — without any mesh file involved — was a satisfying demonstration of how all 3D geometry is ultimately just arrays of numbers.
+        </p>
     </div>
 
     <div class="portfolio-item-individual">
