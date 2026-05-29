@@ -10,7 +10,7 @@
 
     <!-- Help auto scale for desktop & mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STUDENT TODO Website</title>
+    <title>Shadow Mapping | Portfolio</title>
 
     <!-- Normalize the difference across browsers  https://necolas.github.io/normalize.css/ -->
     <link rel="stylesheet" href="../external/normalize.css">
@@ -69,17 +69,27 @@
 
     <div class="portfolio-item-individual">
         <h2>Project Overview</h2>
-        <p>Provide a brief description of the project, its purpose, and what you aimed to achieve.</p>
+        <p>
+            Shadow Mapping is an assignment in CS250 Computer Graphics II at DigiPen Institute of Technology.
+            The goal was to implement real-time shadow rendering using a two-pass shadow mapping technique —
+            first rendering a depth map from the light's perspective, then comparing fragment depths against it in the main pass.
+        </p>
 
         <h2>Tasks Completed</h2>
         <ul>
-            <li>Describe the tasks you completed for this project.</li>
-            <li>Be specific about your contributions and the technologies used.</li>
+            <li>Created a <strong>Framebuffer Object</strong> with a depth texture to store the shadow map.</li>
+            <li>Rendered the scene from the light's perspective in a <strong>depth-only pass</strong>.</li>
+            <li>Transformed fragments into <strong>light space</strong> and compared depth against the shadow map.</li>
+            <li>Applied a <strong>depth bias</strong> to eliminate shadow acne.</li>
+            <li>Implemented <strong>PCF (Percentage Closer Filtering)</strong> for soft shadow edges.</li>
+            <li>Built and deployed a WebGL 2 version using Emscripten.</li>
         </ul>
 
         <h2>Reflection</h2>
-        <p>Reflect on the project, discussing any challenges faced, solutions implemented, and what you learned from the
-            experience.</p>
+        <p>
+            Tuning the depth bias was tricky — too little caused acne, too much caused Peter Panning.
+            Implementing PCF showed me how shadow quality is fundamentally a sampling problem and how a small kernel can dramatically improve edge quality.
+        </p>
     </div>
 
     <div class="portfolio-item-individual">
