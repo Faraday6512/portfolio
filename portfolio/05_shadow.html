@@ -71,24 +71,27 @@
         <h2>Project Overview</h2>
         <p>
             Shadow Mapping is an assignment in CS250 Computer Graphics II at DigiPen Institute of Technology.
-            The goal was to implement real-time shadow rendering using a two-pass shadow mapping technique —
-            first rendering a depth map from the light's perspective, then comparing fragment depths against it in the main pass.
+            The goal was to implement real-time shadow rendering by treating a light source as a perspective camera,
+            rendering a depth map from its view, and using that depth map to determine shadowed fragments in the main pass.
+            The demo also visualizes the light frustum and shadow map, with interactive ImGui controls.
         </p>
 
         <h2>Tasks Completed</h2>
         <ul>
-            <li>Created a <strong>Framebuffer Object</strong> with a depth texture to store the shadow map.</li>
-            <li>Rendered the scene from the light's perspective in a <strong>depth-only pass</strong>.</li>
-            <li>Transformed fragments into <strong>light space</strong> and compared depth against the shadow map.</li>
-            <li>Applied a <strong>depth bias</strong> to eliminate shadow acne.</li>
-            <li>Implemented <strong>PCF (Percentage Closer Filtering)</strong> for soft shadow edges.</li>
+            <li>Extended the <strong>Texture</strong> class with <code>LoadAsDepthTexture()</code> and <code>LoadAsRGBA()</code> for off-screen rendering targets.</li>
+            <li>Implemented the <strong>FrameBuffer</strong> class to manage FBOs with optional depth and color texture attachments.</li>
+            <li>Implemented <strong>Camera</strong> <code>ViewMatrix()</code> and <code>ToWorldMatrix()</code> to drive the light's perspective transform.</li>
+            <li>Rendered the scene to a <strong>depth buffer</strong> from the light's point of view (<code>renderToDepthBuffer()</code>).</li>
+            <li>Applied <strong>shadow projection</strong> in the fragment shader using <code>textureProj()</code> and depth comparison.</li>
+            <li>Added <strong>exponential fog</strong> and <strong>gamma correction</strong> (<code>color^(1/2.2)</code>) to the shadow shaders.</li>
+            <li>Visualized the <strong>light frustum</strong> and <strong>depth texture</strong> for debugging.</li>
             <li>Built and deployed a WebGL 2 version using Emscripten.</li>
         </ul>
 
         <h2>Reflection</h2>
         <p>
-            Tuning the depth bias was tricky — too little caused acne, too much caused Peter Panning.
-            Implementing PCF showed me how shadow quality is fundamentally a sampling problem and how a small kernel can dramatically improve edge quality.
+            The hardest part was correctly setting up the light-space transform and ensuring the shadow map coordinates mapped to [0,1] NDC for the texture lookup.
+            Integrating fog and gamma correction into the same shader pass also required careful ordering of operations to get the final color right.
         </p>
     </div>
 
