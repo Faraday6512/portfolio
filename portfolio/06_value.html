@@ -69,17 +69,34 @@
 
     <div class="portfolio-item-individual">
         <h2>Project Overview</h2>
-        <p>Provide a brief description of the project, its purpose, and what you aimed to achieve.</p>
+        <p>
+            This project implements a Value Noise algorithm in C++ to generate procedural textures and visualizes them using OpenGL shaders.
+            Value Noise works by assigning random values to lattice points and smoothly interpolating between them,
+            producing natural-looking patterns used in procedural content generation.
+            The implementation supports 1D, 2D, and 3D noise evaluation with multiple smoothing methods
+            and seamlessly integrates into an existing graphics framework.
+        </p>
 
         <h2>Tasks Completed</h2>
         <ul>
-            <li>Describe the tasks you completed for this project.</li>
-            <li>Be specific about your contributions and the technologies used.</li>
+            <li>Implemented <strong>linear, bilinear, and trilinear interpolation</strong> functions as C++ templates in <code>Interpolation.hpp</code>.</li>
+            <li>Implemented the <strong>ValueNoise</strong> class supporting 1D, 2D, and 3D noise evaluation using permutation hashing.</li>
+            <li>Supported multiple <strong>smoothing methods</strong>: Linear, Cosine, Smoothstep, and Quintic fade functions.</li>
+            <li>Used a <strong>permutation table</strong> that is randomly shuffled at construction time to ensure varied noise output.</li>
+            <li>Wrote <strong>GLSL shaders</strong> (<code>simple.vert</code> / <code>simple.frag</code>) to display generated noise textures with tiling support.</li>
+            <li>Added <code>UploadAsRGBA</code> to the <strong>Texture</strong> class to efficiently update texture data each frame.</li>
+            <li>Registered the <strong>Value Noise demo</strong> in the demo factory system.</li>
         </ul>
 
         <h2>Reflection</h2>
-        <p>Reflect on the project, discussing any challenges faced, solutions implemented, and what you learned from the
-            experience.</p>
+        <p>
+            The most challenging part was correctly structuring the trilinear interpolation — mapping 8 lattice corner values
+            to the Near/Far faces and ensuring the hash indices were correctly cast to avoid sign conversion errors.
+            I also encountered linker errors from inline functions defined in headers without the <code>inline</code> keyword,
+            which taught me to be careful about function definitions in header files included across multiple translation units.
+            Overall, this project deepened my understanding of how procedural noise works mathematically
+            and how to bridge C++ template design with GPU-side rendering.
+        </p>
     </div>
 
     <div class="portfolio-item-individual">
