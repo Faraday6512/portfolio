@@ -9,7 +9,7 @@
     <link rel="icon" type="image/svg+xml" href="../img/face.jpg">
     <!-- Help auto scale for desktop & mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STUDENT TODO Website</title>
+    <title>Gradient Noise | Portfolio</title>
 
     <!-- Normalize the difference across browsers  https://necolas.github.io/normalize.css/ -->
     <link rel="stylesheet" href="../external/normalize.css">
@@ -68,17 +68,29 @@
 
     <div class="portfolio-item-individual">
         <h2>Project Overview</h2>
-        <p>Provide a brief description of the project, its purpose, and what you aimed to achieve.</p>
+        <p>
+            This project implements Perlin-style Gradient Noise entirely in GLSL, rendering the result to an offscreen framebuffer
+            and displaying it either as a 2D texture or as a 3D displaced surface.
+            Gradient noise produces smoother, more natural-looking patterns than value noise by using gradient vectors instead of
+            scalar values at lattice points, making it well-suited for terrain, marble, and wood procedural textures.
+        </p>
 
         <h2>Tasks Completed</h2>
         <ul>
-            <li>Describe the tasks you completed for this project.</li>
-            <li>Be specific about your contributions and the technologies used.</li>
+            <li>Implemented a <strong>3D Perlin gradient noise</strong> function in GLSL using a permutation table (size 64, doubled for wrap-around) and 12 gradient vectors at cube-edge midpoints.</li>
+            <li>Used a <strong>quintic fade function</strong> (6t⁵ − 15t⁴ + 10t³) and trilinear interpolation (<code>mix</code>) across all 8 lattice corners.</li>
+            <li>Added <strong>5 pattern modes</strong>: plain Gradient, Fractal Sum (fBm, 6 octaves), Turbulence (absolute fBm), Marble (sin + turbulence), and Wood (fract).</li>
+            <li>Wrote a <strong>surface vertex shader</strong> that displaces mesh vertices in the Z direction using the noise texture as a height map.</li>
+            <li>Built the <strong>C++ demo class</strong> with a framebuffer-based noise generation pass, a spectator camera for the 3D surface view, and ImGui controls for texture size, tiling scale, Z slice, pattern type, and surface geometry.</li>
         </ul>
 
         <h2>Reflection</h2>
-        <p>Reflect on the project, discussing any challenges faced, solutions implemented, and what you learned from the
-            experience.</p>
+        <p>
+            The trickiest part was correctly indexing all 8 lattice corners in the permutation table and keeping the gradient dot-product signs consistent.
+            Debugging noise artifacts required carefully verifying the fade/interpolation math against the reference Perlin paper.
+            Implementing multiple pattern types on top of the same base noise function was straightforward once the core was correct,
+            and seeing the noise drive real-time surface displacement made the result feel immediately tangible.
+        </p>
     </div>
 
     <div class="portfolio-item-individual">
